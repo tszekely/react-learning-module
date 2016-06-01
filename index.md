@@ -34,6 +34,6 @@ Also, you'll probably need to know most of them when working with real React pro
 - [git](https://git-scm.com/doc)
 - [npm](https://docs.npmjs.com/)
 
-##### Not really a necessity but but very useful in conjunction with React
+##### Not really a necessity but very useful in conjunction with React
 
 - [Immutable.JS](https://facebook.github.io/immutable-js/)
