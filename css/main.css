@@ -2,7 +2,8 @@
   background-color: #2d2d2d;
 }
 
-.jumbotron h1 {
+.jumbotron h1,
+.jumbotron .h1 {
   color: #ffffff;
   text-shadow: 0 1px 10px rgba(100,150,255,0.5);
 }
