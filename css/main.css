@@ -15,6 +15,21 @@
 #navigation {
   top: 15px;
   z-index: 5;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+#navigation-toggle {
+  border-color: #eeeeee;
+  background: #ffffff;
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  left: 15px;
+}
+
+.icon-bar {
+  background-color: #666666;
 }
 
 footer.navbar {
@@ -28,6 +43,26 @@ footer.navbar .nav>li>a:hover,
 footer.navbar .nav>li>a:focus {
   background: #000000;
   color: #61DAFB;
+}
+
+@media (max-width: 768px) {
+  #navigation-collapse {
+    position: fixed;
+    left: 0;
+    z-index: 5;
+    top: 0;
+    bottom: 0;
+    right: 30%;
+    min-width: 150px;
+    background: white;
+    padding-top: 64px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  }
+
+  #navigation {
+    position: static !important;
+    width: auto !important;
+  }
 }
 
 @media (min-width: 768px) {

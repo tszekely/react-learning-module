@@ -16,14 +16,14 @@ title: Introduction | React Learning Module
 ## Motivation for this tutorial
 
 This module aims to provide a solid knowledge base for everyone trying to learn React, 
-by walking you, the curious developer, through the making of a small, simplified, yet non-trivial application.
+by walking you, the curious developer, through the making of a small, simplified, yet non-trivial e-commerce application.
 
 ## Prerequisites
 
 Although some of these tools/libraries are not mandatory for working with React, they have proven to be very useful and they help speeding up React development quite a lot.
 Also, you'll probably need to know most of them when working with real React projects.
 
-##### You **must** know the following, intermediate to advanced level:
+##### You **must** know the following, intermediate level at least:
 
 - [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
 - [CSS](https://developer.mozilla.org/en-US/Learn/CSS)
@@ -37,3 +37,12 @@ Also, you'll probably need to know most of them when working with real React pro
 ##### Not really a necessity but very useful in conjunction with React
 
 - [Immutable.JS](https://facebook.github.io/immutable-js/)
+
+**Note: This guide assumes you know the React basics. Although most of the concepts will be briefly explained here,
+ I recommend at least reading the official React documentation first.**
+ 
+###### **In case you're completely new to React, here are a few useful links to get you started:**
+
+- [Official React Documentation](https://facebook.github.io/react/docs/getting-started.html)
+- [Build with React Tutorial](http://buildwithreact.com/tutorial)
+- [Tyler McGinnis' React.js Tutorial](http://tylermcginnis.com/reactjs-tutorial-a-comprehensive-guide-to-building-apps-with-react/)
