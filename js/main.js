@@ -1,6 +1,8 @@
 $(document).ready(function () {
   var $nav = $('#navigation');
 
+  $nav.find('li:contains("' + $('h1').text() + '")').addClass('active');
+
   $nav.affix({
     offset: {
       top: $('.jumbotron')[0].offsetHeight

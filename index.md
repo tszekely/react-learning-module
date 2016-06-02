@@ -37,6 +37,7 @@ Also, you'll probably need to know most of them when working with real React pro
 ##### Not really a necessity but very useful in conjunction with React
 
 - [Immutable.JS](https://facebook.github.io/immutable-js/)
+- [Webpack](http://webpack.github.io/docs/)
 
 **Note: This guide assumes you know the React basics. Although most of the concepts will be briefly explained here,
  I recommend at least reading the official React documentation first.**

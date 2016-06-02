@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Step1 | React Learning Module
+title: Step 1 - Setting up | React Learning Module
 ---
 
-# First step of da lesson
+# Step 1 - Setting up
