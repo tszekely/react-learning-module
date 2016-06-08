@@ -54,7 +54,7 @@ The `--save-dev` argument saves the package in your ``package.json``'s *devDepen
 
 Now it's time to configure it. Create a `webpack.config.js` file and, with your code editor of choice, update it with:
 
-~~~
+~~~javascript
 var webpack = require('webpack');
 var path = require('path');
 
@@ -75,7 +75,7 @@ module.exports = config;
 
 Let's create the `index.jsx` file in the `./src/client/app` and add the following code to verify this configuration.
 
-~~~
+~~~javascript
 console.log('Hello World!');
 ~~~
 {: .language-javascript}
@@ -94,7 +94,7 @@ The above command runs the webpack in the development mode and generates the `bu
 
 To make it more interactive, create an `index.html` file in the root directory and modify it to use this `bundle.js` file
 
-~~~
+~~~html
 <!DOCTYPE html>
 <html>
   <head>
@@ -125,7 +125,7 @@ As we did for Webpack, babel-loader also requires some configuration. Here we ne
 
 Create a `.babelrc` file and update it as below:
 
-~~~
+~~~json
 {
   "presets" : ["es2015", "react"]
 }
@@ -136,7 +136,7 @@ The next step is telling Webpack to use the babel-loader while bundling the file
 
 Open `webpack.config.js` file and update it as below:
 
-~~~
+~~~javascript
 // Existing Code ....
 var config = {
   // Existing Code ....
@@ -214,7 +214,7 @@ npm i --save-dev webpack-dev-server react-hot-loader html-webpack-plugin
 
 Update the `webpack.config.js` file as follows:
 
-~~~
+~~~javascript
 var webpack = require('webpack');
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -263,7 +263,7 @@ Remove the `<script src="src/client/public/bundle.js" type="text/javascript"></s
 
 Now, the last thing we need to do for now is to update the `package.json` file:
 
-~~~
+~~~json
 // existing code
 "scripts": {
     "start": "webpack-dev-server --config webpack.config.js",
@@ -317,7 +317,7 @@ Now we need to make sure Webpack bundles our LESS files and watches for changes.
 
 Add the following to `webpack.config.js`:
 
-~~~
+~~~javascript
 // existing code
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
@@ -434,7 +434,7 @@ npm install clean-webpack-plugin --save-dev
 
 Now let's create a `webpack-production.config.js` file as follows:
 
-~~~
+~~~javascript
 var webpack = require('webpack');
 var path = require('path');
 
@@ -471,7 +471,7 @@ What we're doing here is simply importing our regular webpack config, removing H
 
 The last step is adjusting the `package.json` to use the new config for production builds:
 
-~~~
+~~~json
 // existing code
 "scripts": {
   "start": "webpack-dev-server --config webpack.config.js --progress",
@@ -493,7 +493,7 @@ npm install --save-dev babel-eslint eslint eslint-loader eslint-plugin-react
 
 We're going to touch `webpack.config.js` again:
 
-~~~
+~~~javascript
 // existing code
 loaders : [
       {
@@ -522,7 +522,7 @@ eslint: {
 
 and create a `.eslintrc` file with the following contents:
 
-~~~
+~~~json
 {
   "parser": "babel-eslint", // I want to use babel-eslint for parsing!
   "rules": {
