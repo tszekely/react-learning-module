@@ -153,6 +153,15 @@ div.prism-show-language > div.prism-show-language-label {
 
 /***************************************************/
 
+.twitter-share-button[style] {
+  vertical-align: bottom !important;
+  margin-left: 5px;
+}
+
+.social {
+  padding-bottom: 15px;
+}
+
 .jumbotron {
   background-color: #2d2d2d;
 }
@@ -227,6 +236,6 @@ footer.navbar .nav>li>a:focus {
 
 @media (min-width: 768px) {
   #content {
-    min-height: calc(100vh - 425px - 64px);
+    min-height: calc(100vh - 425px - 102px);
   }
 }
