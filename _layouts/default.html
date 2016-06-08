@@ -4,8 +4,8 @@
   <title>{{ page.title }}</title>
   <meta property="og:title" content="React Learning Module" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="{{ site.baseurl }}{{ page.url }}" />
-  <meta property="og:image" content="{{ site.baseurl }}/react_og_image.jpg" />
+  <meta property="og:url" content="{{ page.url | prepend: site.github.url }}" />
+  <meta property="og:image" content="{{ site.github.url }}/react_og_image.jpg" />
   <meta property="og:image:width" content="1300" />
   <meta property="og:image:height" content="630" />
   <meta property="og:description" content="A React learning module which walks you through the making of a small, simplified, yet non-trivial e-commerce application. Also covers Flux and Redux." />
@@ -56,8 +56,8 @@
 
       <div class="collapse navbar-collapse" id="navigation-collapse">
         <ul class="nav nav-stacked" id="navigation">
-          <li><a href="{{ site.baseurl }}/">Introduction</a></li>
-          <li><a href="{{ site.baseurl }}/step-01">Step 1 - Setting up</a></li>
+          <li><a href="{{ site.github.url }}/">Introduction</a></li>
+          <li><a href="{{ site.github.url }}/step-01">Step 1 - Setting up</a></li>
         </ul>
       </div>
     </nav>
