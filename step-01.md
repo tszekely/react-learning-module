@@ -54,7 +54,6 @@ The `--save-dev` argument saves the package in your ``package.json``'s *devDepen
 
 Now it's time to configure it. Create a `webpack.config.js` file and, with your code editor of choice, update it with:
 
-{: .language-javascript}
 ~~~
 var webpack = require('webpack');
 var path = require('path');
@@ -72,13 +71,14 @@ var config = {
 
 module.exports = config;
 ~~~
+{: .language-javascript}
 
 Let's create the `index.jsx` file in the `./src/client/app` and add the following code to verify this configuration.
 
-{: .language-javascript}
 ~~~
 console.log('Hello World!');
 ~~~
+{: .language-javascript}
 
 Now in the terminal run the following command (according to your OS):
 
@@ -94,7 +94,6 @@ The above command runs the webpack in the development mode and generates the `bu
 
 To make it more interactive, create an `index.html` file in the root directory and modify it to use this `bundle.js` file
 
-{: .language-html}
 ~~~
 <!DOCTYPE html>
 <html>
@@ -108,6 +107,7 @@ To make it more interactive, create an `index.html` file in the root directory a
   </body>
 </html>
 ~~~
+{: .language-html}
 
 **Note: There is a webpack loader called [html-loader](https://github.com/webpack/html-loader) which automatically creates this html file with the correct location of `bundle.js`.**
 
@@ -125,18 +125,17 @@ As we did for Webpack, babel-loader also requires some configuration. Here we ne
 
 Create a `.babelrc` file and update it as below:
 
-{: .language-json}
 ~~~
 {
   "presets" : ["es2015", "react"]
 }
 ~~~
+{: .language-json}
 
 The next step is telling Webpack to use the babel-loader while bundling the files.
 
 Open `webpack.config.js` file and update it as below:
 
-{: .language-javascript}
 ~~~
 // Existing Code ....
 var config = {
@@ -152,6 +151,7 @@ var config = {
   }
 }
 ~~~
+{: .language-javascript}
 
 ## Setting up React
 
@@ -163,7 +163,6 @@ npm i react react-dom --save
 
 Replace the existing console.log statement in the index.jsx with the following content:
 
-{: .language-jsx}
 ~~~
 import React from 'react';
 import {render} from 'react-dom';
@@ -176,6 +175,7 @@ class App extends React.Component {
 
 render(<App />, document.getElementById('app'));
 ~~~
+{: .language-jsx}
 
 Then run:
 
@@ -214,7 +214,6 @@ npm i --save-dev webpack-dev-server react-hot-loader html-webpack-plugin
 
 Update the `webpack.config.js` file as follows:
 
-{: .language-javascript}
 ~~~
 var webpack = require('webpack');
 var path = require('path');
@@ -258,12 +257,12 @@ var config = {
 
 module.exports = config;
 ~~~
+{: .language-javascript}
 
 Remove the `<script src="src/client/public/bundle.js" type="text/javascript"></script>` line in `index.html` as it's no longer necessary (**HtmlWebpackPlugin** automatically appends the bundled script to our HTML file).
 
 Now, the last thing we need to do for now is to update the `package.json` file:
 
-{: .language-json}
 ~~~
 // existing code
 "scripts": {
@@ -273,6 +272,7 @@ Now, the last thing we need to do for now is to update the `package.json` file:
   },
 // existing code
 ~~~
+{: .language-json}
 
 This allows us to run the **WebpackDevServer** for development with **Hot Module Reloading** enabled by typing `npm start` in the terminal, and to create a production build by running `npm run build`.
 
@@ -306,10 +306,10 @@ npm install bootstrap react-bootstrap --save
 
 Create a file named `main.less` in `src/client/styles` with the following contents:
 
-{: .language-less}
 ~~~
 @import "~bootstrap/less/bootstrap.less";
 ~~~
+{: .language-less}
 
 We could have also just included the Bootstrap CSS from a CDN, but we're including it in our styles so we can customize it (and of course demonstrate how all this works).
 
@@ -317,7 +317,6 @@ Now we need to make sure Webpack bundles our LESS files and watches for changes.
 
 Add the following to `webpack.config.js`:
 
-{: .language-javascript}
 ~~~
 // existing code
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
@@ -362,6 +361,7 @@ var config = {
 
 module.exports = config;
 ~~~
+{: .language-javascript}
 
 There are many things going on in our config, but I'll highlight the essentials:
 
@@ -375,9 +375,7 @@ Now running `npm start` should serve us the project with the JS and CSS bundles 
 
 To test that everything works properly, change the `index.jsx` contents to:
 
-{: .language-jsx}
 ~~~
-
 import React from 'react';
 import { render } from 'react-dom';
 import { Glyphicon } from 'react-bootstrap';
@@ -396,26 +394,27 @@ class App extends React.Component {
 
 render(<App />, document.getElementById('app'));
 ~~~
+{: .language-jsx}
 
 After saving the file, webpack should rebuild and the changes should be reflected in the browser without needing to refresh the page.
 
 Now try adding this to the `main.less` file (or anything you want, really. Just make sure it's valid LESS code):
 
-{: .language-less}
 ~~~
 body {
   background: purple;
   color: white;
 }
 ~~~
+{: .language-less}
 
 or try changing some bootstrap variables like:
 
-{: .language-less}
 ~~~
 @font-family-base: "Comic Sans MS";
 @font-size-base: 24px;
 ~~~
+{: .language-less}
 
 Looking sharp, doesn't it? 
 
@@ -435,7 +434,6 @@ npm install clean-webpack-plugin --save-dev
 
 Now let's create a `webpack-production.config.js` file as follows:
 
-{: .language-javascript}
 ~~~
 var webpack = require('webpack');
 var path = require('path');
@@ -467,12 +465,12 @@ devConfig.plugins = devConfig.plugins.concat([
 
 module.exports = devConfig;
 ~~~
+{: .language-javascript}
 
 What we're doing here is simply importing our regular webpack config, removing HMR stuff from it, changing the source-map type to the most concise one and adding some plugins to optimize the code (and CleanWebpackPlugin to clean our dist folder everytime we make a build.
 
 The last step is adjusting the `package.json` to use the new config for production builds:
 
-{: .language-json}
 ~~~
 // existing code
 "scripts": {
@@ -481,6 +479,7 @@ The last step is adjusting the `package.json` to use the new config for producti
 },
 // existing code
 ~~~
+{: .language-json}
 
 ## ...and linting?
 
@@ -494,7 +493,6 @@ npm install --save-dev babel-eslint eslint eslint-loader eslint-plugin-react
 
 We're going to touch `webpack.config.js` again:
 
-{: .language-javascript}
 ~~~
 // existing code
 loaders : [
@@ -520,10 +518,10 @@ eslint: {
       // existing code 
       // eslint-loader MUST be placed right after babel, in order to check the files BEFORE they are compiled.
 ~~~
+{: .language-javascript}
 
 and create a `.eslintrc` file with the following contents:
 
-{: .language-json}
 ~~~
 {
   "parser": "babel-eslint", // I want to use babel-eslint for parsing!
@@ -580,5 +578,6 @@ and create a `.eslintrc` file with the following contents:
   ]
 }
 ~~~
+{: .language-json}
 
 This file is the eslint configuration. I won't go into details with it because it's not an essential part of the React module, but you can read more about it in the [docs](http://eslint.org/docs/user-guide/configuring)
