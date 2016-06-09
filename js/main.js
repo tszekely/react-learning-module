@@ -1,7 +1,7 @@
 $(document).ready(function () {
   var $nav = $('#navigation');
 
-  $('title').length && $nav.find('li:contains("' + $('title').text() + '")').addClass('active');
+  $('h1').length && $nav.find('li:contains("' + $('h1').text() + '")').addClass('active');
 
   $nav.affix({
     offset: {
