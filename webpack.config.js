@@ -12,7 +12,7 @@ var config = {
   entry: [
     'webpack-dev-server/client?http://localhost:8080', // WebpackDevServer host and port
     'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors
-    APP_DIR + '/index.jsx', // Your appʼs entry point,
+    APP_DIR + '/index.js', // Your appʼs entry point,
     STYLE_DIR + '/main.less'
   ],
   output: {

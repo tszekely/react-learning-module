@@ -1,17 +1,17 @@
 import React from 'react';
-import { render } from 'react-dom';
+
 import { Glyphicon } from 'react-bootstrap';
 
 class App extends React.Component {
   render() {
     return (
-      <p>
+      <div>
         <Glyphicon glyph="star" />
 
         Hello React!
-      </p>
+      </div>
     );
   }
 }
 
-render(<App />, document.getElementById('app'));
+export default App;
