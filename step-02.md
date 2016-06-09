@@ -27,7 +27,7 @@ body {
 ~~~
 {: .language-less}
 
-Everything compiles properly? If yes, then you're good to go. If not, check [Step 1](/step-01) and make sure you followed the instructions correctly.
+Everything compiles properly? If yes, then you're good to go. If not, check [Step 1]({{ site.github.url }}/step-01) and make sure you followed the instructions correctly.
 
 As you might have noticed in the **React** part of Step 1, we are using [JSX](https://facebook.github.io/jsx/), React's XML-like syntax for creating components. What we did there was not quite right, so we'll fix it now.
 
@@ -63,6 +63,7 @@ export default App;
 {: .language-jsx}
 
 Now in `index.js`:
+
 ~~~jsx
 import React from 'react';
 import { render } from 'react-dom';
