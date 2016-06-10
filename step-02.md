@@ -63,6 +63,7 @@ export default App;
 {: .language-jsx}
 
 Now in `index.js`:
+
 ~~~jsx
 import React from 'react';
 import { render } from 'react-dom';
@@ -211,7 +212,7 @@ export default Footer;
 ~~~
 {: .language-jsx}
 
-and the of course import it in `App.jsx` (let's also create a wrapper for the content) :
+and then of course import it in `App.jsx` (let's also create a wrapper for the content) :
 
 ~~~jsx
 import React from 'react';
