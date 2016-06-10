@@ -1,14 +1,17 @@
 import React from 'react';
 
-import { Glyphicon } from 'react-bootstrap';
+import Header from './Header.jsx';
+import Footer from './Footer.jsx';
 
 class App extends React.Component {
   render() {
     return (
       <div>
-        <Glyphicon glyph="star" />
-
-        Hello React!
+        <Header />
+        <div id="content">
+          
+        </div>
+        <Footer />
       </div>
     );
   }
