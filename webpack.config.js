@@ -38,7 +38,7 @@ var config = {
       {
         test: /\.jsx?/,
         loader: "eslint",
-        exclude: /node_modules/
+        exclude: [/node_modules/, /\.json/]
       },
       {
         test: /\.less$/,
@@ -52,6 +52,11 @@ var config = {
           APP_DIR,
           path.resolve(__dirname, 'node_modules/bootstrap/fonts')
         ]
+      },
+      {
+        test: /\.json/,
+        loader: 'json',
+        include: APP_DIR
       }
     ]
   },
