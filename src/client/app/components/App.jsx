@@ -25,7 +25,7 @@ class App extends React.Component {
         <Header />
         <Grid id="content">
           <ProductList
-            products={products} />
+            products={this.state.products} />
         </Grid>
         <Footer />
       </div>
