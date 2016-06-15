@@ -13,7 +13,7 @@ body {
 }
 
 #content {
-  padding-top: 70px;
+  padding: 70px 0 0;
   min-height: ~"calc(100vh - 92px)";
 }
 
@@ -27,5 +27,35 @@ footer {
   .copyright {
     padding-top: @padding-small-horizontal / 2;
     padding-bottom: @padding-small-horizontal;
+  }
+}
+
+.ellipsis {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+/****** Product ******/
+
+.product {
+  &-img-wrapper {
+    margin: -15px -15px 0;
+    height: 0;
+    padding-bottom: 100%;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid @panel-default-border;
+  }
+
+  &-img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &-price {
+    margin-bottom: 0;
   }
 }
