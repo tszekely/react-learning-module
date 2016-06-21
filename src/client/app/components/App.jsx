@@ -2,7 +2,8 @@ import React from 'react';
 
 import Header from './Header.jsx';
 import Footer from './Footer.jsx';
-import ProductList from '../components/ProductList.jsx';
+// import ProductList from '../components/ProductList.jsx';
+import ProductPage from '../components/ProductPage.jsx';
 
 import products from '../Products.json';
 
@@ -13,7 +14,7 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      products: products.slice(0, 12)
+      products
     };
   }
 
@@ -24,8 +25,13 @@ class App extends React.Component {
       <div>
         <Header />
         <Grid id="content">
-          <ProductList
-            products={this.state.products} />
+          {/*
+           <ProductList
+           products={this.state.products} />
+          */}
+
+          <ProductPage
+            product={this.state.products[0]} />
         </Grid>
         <Footer />
       </div>
