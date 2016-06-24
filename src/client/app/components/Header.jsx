@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Navbar, Nav, NavItem, Glyphicon } from 'react-bootstrap';
+import { IndexLinkContainer } from 'react-router-bootstrap';
 
 class Header extends React.Component {
   render() {
@@ -16,19 +17,22 @@ class Header extends React.Component {
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav pullRight>
+            <IndexLinkContainer to="/">
+              <NavItem
+                eventKey={1}>
+                Home
+              </NavItem>
+            </IndexLinkContainer>
+
+            <IndexLinkContainer to="/shop">
+              <NavItem
+                eventKey={2}>
+                Shop
+              </NavItem>
+            </IndexLinkContainer>
+
             <NavItem
-              eventKey={1}
-              href="#">
-              Home
-            </NavItem>
-            <NavItem
-              eventKey={2}
-              href="#">
-              Shop
-            </NavItem>
-            <NavItem
-              eventKey={3}
-              href="#">
+              eventKey={3}>
               <Glyphicon glyph="shopping-cart" />
               {' Cart'}
             </NavItem>

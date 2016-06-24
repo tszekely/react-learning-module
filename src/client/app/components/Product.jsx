@@ -2,6 +2,8 @@ import React from 'react';
 
 import { Col, Panel } from 'react-bootstrap';
 
+import { Link } from 'react-router';
+
 function Product(props) {
   let {
     product
@@ -14,20 +16,20 @@ function Product(props) {
       sm={6}>
       <Panel className="product">
         <div className="product-img-wrapper">
-          <a href="#">
+          <Link to={`shop/${product.id}`}>
             <img
               alt={product.name}
               className="img-responsive product-img"
               src={product.picture} />
-          </a>
+          </Link>
         </div>
 
         <h4
           className="ellipsis"
           title={product.name}>
-          <a href="#">
+          <Link to={`shop/${product.id}`}>
             {product.name}
-          </a>
+          </Link>
         </h4>
 
         <h5
