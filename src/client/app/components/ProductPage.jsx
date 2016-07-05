@@ -1,58 +1,30 @@
 import React from 'react';
-import { findDOMNode } from 'react-dom';
 
-import { PageHeader, Image, Col, Panel, Media, InputGroup, FormControl, Button } from 'react-bootstrap';
+import { PageHeader, Image, Col, Panel, Media, InputGroup, FormControl, Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
+
+import IPropTypes from 'immutable-props';
 
 class ProductPage extends React.Component {
   constructor(props) {
     super(props);
 
-    // this.state = {
-    //   quantity
-    // }
-  }
-
-  componentWillMount() {
-    console.log('Component WILL MOUNT!');
-
-    const qtyInput = document.getElementById('qtyInput');
-    console.log(qtyInput);
-  }
-
-  componentDidMount() {
-    console.log('Component DID MOUNT!');
-
-    const qtyInput = findDOMNode(this.qtyInput);
-
-    qtyInput.onchange = (e) => {
-      this.quantity = e.target.value;
-      this.forceUpdate();
+    this.state = {
+      quantity: 1
     };
+
+    this.handleAddToCart = this.handleAddToCart.bind(this);
+    this.handleUpdateQuantity = this.handleUpdateQuantity.bind(this);
   }
 
-  componentWillReceiveProps(/*newProps*/) {
-    console.log('Component WILL RECIEVE PROPS!');
+  handleUpdateQuantity(e) {
+    this.setState({
+      quantity: Number(e.target.value)
+    });
   }
 
-  shouldComponentUpdate(/*newProps, newState*/) {
-    return true;
+  handleAddToCart() {
+    this.props.handleAddToCart(this.props.product, Number(this.state.quantity));
   }
-
-  componentWillUpdate(/*nextProps, nextState*/) {
-    console.log('Component WILL UPDATE!');
-  }
-
-  componentDidUpdate(/*prevProps, prevState*/) {
-    console.log('Component DID UPDATE!');
-  }
-
-  componentWillUnmount() {
-    console.log('Component WILL UNMOUNT!');
-  }
-
-  // handleUpdateQuantity(e) {
-  //   console.log(e);
-  // }
 
   render() {
     const { product } = this.props;
@@ -62,38 +34,49 @@ class ProductPage extends React.Component {
         Price:
 
         <span className="pull-right">
-          {`${product.price}$`}
+          {`$${product.price}`}
         </span>
       </div>
     );
 
+    const StockTooltip = (
+      <Tooltip
+        id="stock">
+        {`Stock: ${product.stock}`}
+      </Tooltip>
+    );
+
     const PanelFooter = (
       <div>
-        <InputGroup>
-          <FormControl
-            id="qtyInput"
-            min="1"
-            max="99"
-            type="number"
-            defaultValue={1}
-            ref={(ref) => { this.qtyInput = ref; }} />
-          <InputGroup.Addon>
-            Units
-          </InputGroup.Addon>
-        </InputGroup>
+        <OverlayTrigger
+          placement="bottom"
+          overlay={StockTooltip}>
+          <InputGroup>
+            <FormControl
+              id="qtyInput"
+              min="1"
+              max={product.stock}
+              type="number"
+              value={this.state.quantity}
+              onChange={this.handleUpdateQuantity} />
+            <InputGroup.Addon>
+              Units
+            </InputGroup.Addon>
+          </InputGroup>
+        </OverlayTrigger>
 
         <div className="text-uppercase h4 product-page-total">
           Total:
 
           <span className="pull-right">
             {
-              `${
+              `$${
                 Number(
-                  this.quantity ?
-                  product.price * this.quantity :
+                  this.state.quantity ?
+                  product.price * this.state.quantity :
                     product.price
                 ).toFixed(2)
-              } $`
+              }`
             }
           </span>
         </div>
@@ -101,7 +84,8 @@ class ProductPage extends React.Component {
         <Button
           block
           bsStyle="primary"
-          bsSize="large">
+          bsSize="large"
+          onClick={this.handleAddToCart}>
           Add to Cart
         </Button>
       </div>
@@ -151,7 +135,9 @@ class ProductPage extends React.Component {
 }
 
 ProductPage.propTypes = {
-  product: React.PropTypes.object.isRequired
+  cart: IPropTypes.Map,
+  product: React.PropTypes.object.isRequired,
+  handleAddToCart: React.PropTypes.func.isRequired
 };
 
 export default ProductPage;

@@ -1,7 +1,12 @@
 import React from 'react';
 
-import { Navbar, Nav, NavItem, Glyphicon } from 'react-bootstrap';
+import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { IndexLinkContainer } from 'react-router-bootstrap';
+import { IndexLink } from 'react-router';
+
+import IPropTypes from 'immutable-props';
+
+import Cart from './Cart.jsx';
 
 class Header extends React.Component {
   render() {
@@ -9,9 +14,9 @@ class Header extends React.Component {
       <Navbar fixedTop>
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="/">
-              Our Awesome Store
-            </a>
+            <IndexLink to="/">
+                Our Awesome Store
+            </IndexLink>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
@@ -30,12 +35,9 @@ class Header extends React.Component {
                 Shop
               </NavItem>
             </IndexLinkContainer>
-
-            <NavItem
-              eventKey={3}>
-              <Glyphicon glyph="shopping-cart" />
-              {' Cart'}
-            </NavItem>
+            
+            <Cart
+              cart={this.props.cart} />
           </Nav>
         </Navbar.Collapse>
       </Navbar>
@@ -43,5 +45,8 @@ class Header extends React.Component {
   }
 }
 
+Header.propTypes = {
+  cart: IPropTypes.Map
+};
 
 export default Header;

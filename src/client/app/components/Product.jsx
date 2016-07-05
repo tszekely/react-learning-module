@@ -39,7 +39,7 @@ function Product(props) {
         </h5>
 
         <div className="pull-right h4 product-price">
-          {`${product.price}$`}
+          {`$${product.price}`}
         </div>
       </Panel>
     </Col>

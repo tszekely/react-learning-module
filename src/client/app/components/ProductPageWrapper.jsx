@@ -3,6 +3,8 @@ import React from 'react';
 import ProductPage from './ProductPage.jsx';
 import NotFound from './NotFound.jsx';
 
+import IPropTypes from 'immutable-props';
+
 class ProductPageWrapper extends React.Component {
 
 
@@ -13,7 +15,9 @@ class ProductPageWrapper extends React.Component {
 
     return product ? (
       <ProductPage
-        product={product} />
+        cart={this.props.cart}
+        product={product}
+        handleAddToCart={this.props.handleAddToCart} />
     ) : (
       <NotFound />
     );
@@ -21,8 +25,10 @@ class ProductPageWrapper extends React.Component {
 }
 
 ProductPageWrapper.propTypes = {
+  cart: IPropTypes.Map,
   products: React.PropTypes.arrayOf(React.PropTypes.object),
-  params: React.PropTypes.object.isRequired
+  params: React.PropTypes.object.isRequired,
+  handleAddToCart: React.PropTypes.func
 };
 
 export default ProductPageWrapper;
