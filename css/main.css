@@ -236,6 +236,6 @@ footer.navbar .nav>li>a:focus {
 
 @media (min-width: 768px) {
   #content {
-    min-height: calc(100vh - 425px - 102px);
+    min-height: calc(100vh - 425px - 81px);
   }
 }
