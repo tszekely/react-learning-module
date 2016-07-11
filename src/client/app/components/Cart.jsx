@@ -6,6 +6,8 @@ import IPropTypes from 'immutable-props';
 
 import CartItem from './CartItem.jsx';
 
+import { IndexLinkContainer } from 'react-router-bootstrap';
+
 class Cart extends React.Component {
 
   render() {
@@ -52,6 +54,15 @@ class Cart extends React.Component {
               <span className="pull-right">{`$${total}`}</span>
             </h4>
           </MenuItem>
+          <MenuItem divider />
+
+          <IndexLinkContainer to={'/checkout'}>
+            <MenuItem
+              className="text-center h4 cart-checkout-button"
+              disabled={this.props.cart.size < 1}>
+              Go To Checkout
+            </MenuItem>
+          </IndexLinkContainer>
         </ul>
       </Dropdown>
     );

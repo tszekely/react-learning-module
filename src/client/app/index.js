@@ -7,6 +7,8 @@ import Home from './components/Home.jsx';
 import ProductList from './components/ProductList.jsx';
 import ProductPageWrapper from './components/ProductPageWrapper.jsx';
 import NotFound from './components/NotFound.jsx';
+import Checkout from './components/Checkout.jsx';
+import OrderSent from './components/OrderSent.jsx';
 
 render(
   (
@@ -30,6 +32,14 @@ render(
             component={ProductPageWrapper} />
 
         </Route>
+
+        <Route
+          path="checkout"
+          component={Checkout} />
+
+        <Route
+          path="order_sent"
+          component={OrderSent} />
 
         <Route
           path="*"
