@@ -295,7 +295,7 @@ Using **Webpack**, we can also handle the Stylesheet (CSS, SASS, LESS, etc.) bun
 To do so, we need to install the following loaders: 
 
 ~~~
-npm install less-loader less style-loader css-loader url-loader extract-text-webpack-plugin --save-dev
+npm install less-loader less style-loader css-loader url-loader file-loader extract-text-webpack-plugin --save-dev
 ~~~
 
 We also need to install [bootstrap](http://getbootstrap.com/) and [react-bootstrap](http://react-bootstrap.github.io/getting-started.html):
