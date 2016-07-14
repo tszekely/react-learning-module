@@ -355,7 +355,7 @@ var config = {
   },
   plugins: [
     // existing code
-    new ExtractTextPlugin("styles/style.css", {allChunks: false})
+    new ExtractTextPlugin("/styles/style.css", {allChunks: false})
   ]
 };
 
