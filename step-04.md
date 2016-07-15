@@ -15,7 +15,7 @@ Let's see some examples.
 
 ## Creating the Shop view
 
-Let's create the Product component first (`src/client/app/components/ProductList.jsx`):
+Let's create the Product component first (`src/client/app/components/Product.jsx`):
 
 ~~~jsx
 import React from 'react';
