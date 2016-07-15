@@ -27,4 +27,11 @@ Now clone the [HTML Templates](https://github.com/tszekely/soundplayer-react-htm
 1. Make the navigation menu expandable
 2. Make the playlist expandable as in the [Audio player example](http://tutorialzine.com/2015/03/html5-music-player/) when at least a track is loaded; the tracklist can be empty for now
 
+## 10.3 - Routing
 
+1. Create 3 routes for the application:
+  - `/browse` - showing the list of all tracks (`04-all-tracks.html`)
+  - `/playlists` - showing the list of all playlists (`05-playlists.html`)
+  - `/playlists/<playlist_id>` - showing the currently playing track & playlist (`index.html`)
+2. The main route (`/`) should redirect to `/browse`
+3. Any wrong route should be handled (redirect to `/browse` or create a 404 page, it's up to you)
