@@ -3,40 +3,43 @@ import React from 'react';
 import Header from './Header.jsx';
 import Footer from './Footer.jsx';
 
-import products from '../Products.json';
-
 import { Grid } from 'react-bootstrap';
 
-import { Map } from 'immutable';
+import Backendless from 'backendless';
+
+import APP_CONSTANTS from '../constants/AppConstants';
+const { BACKENDLESS } = APP_CONSTANTS;
+
+Backendless.initApp(BACKENDLESS.APPLICATION_ID, BACKENDLESS.SECRET_KEY, BACKENDLESS.VERSION);
+Backendless.enablePromises();
+
+import CartStore from '../stores/CartStore';
+
+function getStateFromStores() {
+  return {
+    cart: CartStore.getAll()
+  };
+}
 
 class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      products,
-      cart: Map()
-    };
+    this.state = getStateFromStores();
 
-    this.handleAddToCart = this.handleAddToCart.bind(this);
+    this._onChange = this._onChange.bind(this);
   }
 
-  handleAddToCart(product, quantity) {
-    let newCart = this.state.cart.update(product.id, (p) => {
-      return p ?
-      {
-        ...p,
-        quantity: p.quantity + quantity
-      } :
-      {
-        product,
-        quantity: quantity
-      };
-    });
-    
-    this.setState({
-      cart: newCart
-    });
+  componentDidMount() {
+    CartStore.addChangeListener(this._onChange);
+  }
+
+  componentWillUnmount() {
+    CartStore.removeChangeListener(this._onChange);
+  }
+
+  _onChange() {
+    this.setState(getStateFromStores());
   }
 
   render() {

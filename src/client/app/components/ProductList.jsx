@@ -3,55 +3,87 @@ import Product from '../components/Product.jsx';
 import ListPagination from './common/ListPagination.jsx';
 
 import { Col, Clearfix } from 'react-bootstrap';
+import Loading from './common/Loading.jsx';
 
-const PAGE_SIZE = 24;
+import ProductActions from '../actions/view/ProductActions';
+import ProductStore from '../stores/ProductStore';
+
+import APP_CONSTANTS from '../constants/AppConstants';
+const { PAGE_SIZE } = APP_CONSTANTS;
+
+function getStateFromStores() {
+  return {
+    products: ProductStore.getAll(),
+    activePage: ProductStore.getCurrentPage(),
+    totalPages: ProductStore.getTotalPages(),
+    isLoading: ProductStore.getLoadingState()
+  };
+}
 
 class ProductList extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      activePage: 1
-    };
+    this.state = getStateFromStores();
 
     this.handleSelectPage = this.handleSelectPage.bind(this);
+    this._onChange = this._onChange.bind(this);
+  }
+
+  componentDidMount() {
+    ProductActions.getProducts(this.state.activePage, PAGE_SIZE);
+    ProductStore.addChangeListener(this._onChange);
+  }
+
+  componentWillUnmount() {
+    ProductStore.removeChangeListener(this._onChange);
   }
 
   handleSelectPage(newPage) {
-    this.setState({
-      activePage: newPage
-    });
+    ProductActions.getProducts(newPage, PAGE_SIZE);
+  }
+
+  _onChange() {
+    this.setState(getStateFromStores());
   }
 
   render() {
     const {
-      activePage
+      activePage,
+      products,
+      totalPages,
+      isLoading
     } = this.state;
 
-    const products = this.props.products.slice((activePage - 1) * PAGE_SIZE, activePage * PAGE_SIZE);
+    if (isLoading || products.length !== PAGE_SIZE) {
+      return (
+        <Loading />
+      );
+    } else {
+      return (
+        <div>
+          <Col
+            className="text-right"
+            xs={12}>
+            <ListPagination
+              disabled={isLoading}
+              activePage={activePage}
+              items={totalPages}
+              onSelect={this.handleSelectPage} />
+          </Col>
 
-    return (
-      <div>
-        <Col
-          className="text-right"
-          xs={12}>
-          <ListPagination
-            activePage={activePage}
-            items={Math.ceil(this.props.products.length / PAGE_SIZE)}
-            onSelect={this.handleSelectPage} />
-        </Col>
+          <Clearfix />
 
-        <Clearfix />
-
-        {
-          products.map(product => (
-            <Product
-              key={product.id}
-              product={product} />
-          ))
-        }
-      </div>
-    );
+          {
+            products.map(product => (
+              <Product
+                key={product.id}
+                product={product} />
+            ))
+          }
+        </div>
+      );
+    }
   }
 }
 

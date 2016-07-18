@@ -8,26 +8,19 @@ class ProductPage extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      quantity: 1
-    };
-
     this.handleAddToCart = this.handleAddToCart.bind(this);
-    this.handleUpdateQuantity = this.handleUpdateQuantity.bind(this);
   }
 
-  handleUpdateQuantity(e) {
-    this.setState({
-      quantity: Number(e.target.value)
-    });
-  }
 
   handleAddToCart() {
-    this.props.handleAddToCart(this.props.product, Number(this.state.quantity));
+    this.props.handleAddToCart(this.props.product, Number(this.props.quantity));
   }
 
   render() {
-    const { product } = this.props;
+    const {
+      product,
+      quantity
+    } = this.props;
 
     const PanelHeader = (
       <div className="text-uppercase">
@@ -57,8 +50,8 @@ class ProductPage extends React.Component {
               min="1"
               max={product.stock}
               type="number"
-              value={this.state.quantity}
-              onChange={this.handleUpdateQuantity} />
+              value={quantity}
+              onChange={this.props.handleUpdateQuantity} />
             <InputGroup.Addon>
               Units
             </InputGroup.Addon>
@@ -72,8 +65,8 @@ class ProductPage extends React.Component {
             {
               `$${
                 Number(
-                  this.state.quantity ?
-                  product.price * this.state.quantity :
+                  quantity ?
+                  product.price * quantity :
                     product.price
                 ).toFixed(2)
               }`
@@ -137,7 +130,9 @@ class ProductPage extends React.Component {
 ProductPage.propTypes = {
   cart: IPropTypes.Map,
   product: React.PropTypes.object.isRequired,
-  handleAddToCart: React.PropTypes.func.isRequired
+  quantity: React.PropTypes.number.isRequired,
+  handleAddToCart: React.PropTypes.func.isRequired,
+  handleUpdateQuantity: React.PropTypes.func.isRequired
 };
 
 export default ProductPage;

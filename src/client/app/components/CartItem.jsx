@@ -10,7 +10,7 @@ function CartItem(props) {
   } = props.cartItem;
 
   return (
-    <IndexLinkContainer  to={`shop/${product.id}`}>
+    <IndexLinkContainer  to={`/shop/${product.id}`}>
       <MenuItem
         className="cart-item">
         <Media>

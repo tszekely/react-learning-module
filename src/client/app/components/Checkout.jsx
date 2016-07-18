@@ -62,8 +62,6 @@ class Checkout extends React.Component {
   }
 
   handleInputChange(e) {
-    console.log(e);
-
     let valid = this.state[e.target.id].valid,
       value = e.target.value;
 
