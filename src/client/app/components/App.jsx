@@ -52,7 +52,6 @@ class App extends React.Component {
             React.cloneElement(
               this.props.children,
               {
-                handleAddToCart: this.handleAddToCart,
                 ...this.state
               }
             )

@@ -59,5 +59,4 @@ CartStore.dispatcherIndex = AppDispatcher.register((payload) => {
   }
 });
 
-
 export default CartStore;

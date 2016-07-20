@@ -55,7 +55,7 @@ class ProductList extends React.Component {
       isLoading
     } = this.state;
 
-    if (isLoading || products.length !== PAGE_SIZE) {
+    if (isLoading) {
       return (
         <Loading />
       );
@@ -86,13 +86,5 @@ class ProductList extends React.Component {
     }
   }
 }
-
-ProductList.propTypes = {
-  products: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
-};
-
-ProductList.defaultProps = {
-  products: []
-};
 
 export default ProductList;
