@@ -23,8 +23,7 @@ We'll start with getting the Product list from the server.
 
 If you look at this diagram, it makes perfect sense if you know Flux, but for someone who doesn't, it's usually just more confusion.
 
-![Flux Flow](https://raw.githubusercontent.com/facebook/flux/master/docs/img/flux-diagram-white-background.png)
-{: .img-responsive}
+[![Flux Flow](https://raw.githubusercontent.com/facebook/flux/master/docs/img/flux-diagram-white-background.png){: .img-responsive}](https://raw.githubusercontent.com/facebook/flux/master/docs/img/flux-diagram-white-background.png)
 
 The idea is that the data flow is **unidirectional**, which makes it easier to reason about and debug.
 
