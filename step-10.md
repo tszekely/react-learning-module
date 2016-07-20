@@ -25,7 +25,9 @@ Now clone the [HTML Templates](https://github.com/tszekely/soundplayer-react-htm
 ## 10.2 - Basic interactions
 
 1. Make the navigation menu expandable
-2. Make the playlist expandable as in the [Audio player example](http://tutorialzine.com/2015/03/html5-music-player/) when at least a track is loaded; the tracklist can be empty for now
+2. Make the playlist expandable as in the [Audio player example](http://tutorialzine.com/2015/03/html5-music-player/) when at least a track is loaded; the tracklist can be empty for now 
+
+*Tip: make the playlist expandable, then add the condition to make it expandable only when at least a track is loaded*
 
 ## 10.3 - Routing
 
@@ -35,3 +37,13 @@ Now clone the [HTML Templates](https://github.com/tszekely/soundplayer-react-htm
   - `/playlists/<playlist_id>` - showing the currently playing track & playlist (`index.html`)
 2. The main route (`/`) should redirect to `/browse`
 3. Any wrong route should be handled (redirect to `/browse` or create a 404 page, it's up to you)
+
+*Tip: the lists can be filled with dummy data, we'll start using the Soundcloud API in the next part*
+
+## 10.4 - Browse Tracks
+
+Implement the `04-all-tracks.html` view with the following functionalities:
+
+1. The list should display any feed of tracks (the default track list coming from the SC API, a chart, a user's tracks, etc.)
+2. The list should be paginated with 30 items, with either infinite scroll or a "Load more" button at the bottom
+3. The user should be able to search for tracks using the search bar at the top; 
