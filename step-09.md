@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Step 8 - Flux Architecture | React Learning Module
+title: Step 9 - Flux Architecture | React Learning Module
 ---
 
 # Flux Architecture
