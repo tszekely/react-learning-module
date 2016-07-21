@@ -82,7 +82,7 @@ In addition to playing tracks, the user should be able to:
 4. Search for tracks in the expanded playlist (internally, in the full title (ex. Drake - Hotline Bling should be found by the following queries: drake - hot, hotline, bling, etc.)
 5. If it's a "Now playing playlist", an add button should appear next to its name (`07-save-now-playing.html`) and clicking it should open the "Create playlist modal" with the "Create new playlist" option selected and the select disabled. Entering a name and saving it should behave like 10.5.2
 
-# 10.8 - Manipulate tracks in playlists
+## 10.8 - Manipulate tracks in playlists
 
 1. Remove tracks from playlist from the expanded playlist by clicking on the remove button
 2. Rearrange tracks in playlist by drag & drop
