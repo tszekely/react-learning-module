@@ -17,6 +17,11 @@ Now clone the [HTML Templates](https://github.com/tszekely/soundplayer-react-htm
 
 **Note: The SoundCloud API requires you to have an account and to register an app. If you don't have an account, create one and [register an app](http://soundcloud.com/you/apps/new).**
 
+## 10.0 - General Requirements
+
+1. Use a Flux (or Redux if you're brave enough to learn it on your own) architecture
+2. Implement loading states where necessary (ex. when there is a pending request following an action) by adding a "loading" class to buttons
+
 ## 10.1 - Build system & Architecture
 
 1. Set up a (preferably webpack) build system for your project
@@ -46,4 +51,40 @@ Implement the `04-all-tracks.html` view with the following functionalities:
 
 1. The list should display any feed of tracks (the default track list coming from the SC API, a chart, a user's tracks, etc.)
 2. The list should be paginated with 30 items, with either infinite scroll or a "Load more" button at the bottom
-3. The user should be able to search for tracks using the search bar at the top; 
+3. The user should be able to search for tracks using the search bar at the top; searching for tracks should display the results in the list below and emptying the search input should reset the feed to the initial one (https://developers.soundcloud.com/docs#search)
+
+## 10.5 - Create playlists / Add track to playlist
+
+The playlist picture should be the first track's picture (or whatever Soundcloud assigns)
+
+1. From the track browsing list, the user should be able to click on the + button which should open up the "Add to playlist" modal (`06-add-playlist-modal.html`)
+2. If there is no playlist available, the user should be required to enter a playlist name (`06-add-playlist-modal.html`), otherwise he should be able to select which playlist to add the track to (`06-add-track-modal.html`) but still be able to create a new playlist
+3. The playlist data should be stored in your SC account (https://developers.soundcloud.com/docs#creating-sets)
+
+## 10.6 - Make the tracks playable
+
+1. The user should be able to play tracks:
+  - From the browse tracks view by clicking on the track
+    - If there is no playlist available or currently playing, create a temporary one named "Now Playing" with the track and play it
+    - If there's an active playlist, insert the track after the CURRENTLY PLAYING track and start it
+  - From the expanded playlist (`02-playlist-expanded.html`), by clicking the track
+2. The user should be able to pause and stop tracks
+3. The user should be able to skip tracks; skipping to previous track from the first one in the playlist should play the last track in the playlist and viceversa
+4. The user should be able to enable shuffle (playing songs in random order) and repeat track
+
+## 10.7 - Manipulate playlists
+
+In addition to playing tracks, the user should be able to:
+
+1. Play playlists by clicking on them (replacing the currently playing one)
+2. Delete playlists by clicking the remove button
+3. Remove tracks from playlists from the expanded playlist by clicking on the remove button
+4. Search for tracks in the expanded playlist (internally, in the full title (ex. Drake - Hotline Bling should be found by the following queries: drake - hot, hotline, bling, etc.)
+5. If it's a "Now playing playlist", an add button should appear next to its name (`07-save-now-playing.html`) and clicking it should open the "Create playlist modal" with the "Create new playlist" option selected and the select disabled. Entering a name and saving it should behave like 10.5.2
+
+# 10.8 - Manipulate tracks in playlists
+
+1. Remove tracks from playlist from the expanded playlist by clicking on the remove button
+2. Rearrange tracks in playlist by drag & drop
+
+
