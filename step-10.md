@@ -71,6 +71,10 @@ The playlist picture should be the first track's picture (or whatever Soundcloud
 2. The user should be able to pause and stop tracks
 3. The user should be able to skip tracks; skipping to previous track from the first one in the playlist should play the last track in the playlist and viceversa
 4. The user should be able to enable shuffle (playing songs in random order) and repeat track
+5. When a song is loaded:
+  - The song waveform / a progressbar should appear above the footer; the user should be able to seek the track with it (`01-track-loaded.html`)
+  - The song title and artist should be displayed next to the control buttons (`01-track-loaded.html`), along with the current playing time and song length
+  - The song cover photo should be displayed in the "Now playing page" (`01-track-loaded.html`)
 
 ## 10.7 - Manipulate playlists
 
