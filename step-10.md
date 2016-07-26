@@ -59,7 +59,7 @@ The playlist picture should be the first track's picture (or whatever Soundcloud
 
 1. From the track browsing list, the user should be able to click on the + button which should open up the "Add to playlist" modal (`06-add-playlist-modal.html`)
 2. If there is no playlist available, the user should be required to enter a playlist name (`06-add-playlist-modal.html`), otherwise he should be able to select which playlist to add the track to (`06-add-track-modal.html`) but still be able to create a new playlist
-3. The playlist data should be stored in your SC account (https://developers.soundcloud.com/docs#creating-sets)
+3. The playlist data should be stored in Local Storage / an external service (ex. Firebase, Backendless) / your SC account (https://developers.soundcloud.com/docs#creating-sets); SC account might need authentication which makes it a bit more complicated so it's ok not to use that
 
 ## 10.6 - Make the tracks playable
 
