@@ -250,7 +250,7 @@ var config = {
     new HtmlWebpackPlugin({
       hash: true,
       filename: 'index.html',
-      template: __dirname + '/index.html'
+      template: path.resolve(__dirname, 'index.html')
     })
   ]
 };
@@ -295,7 +295,7 @@ Using **Webpack**, we can also handle the Stylesheet (CSS, SASS, LESS, etc.) bun
 To do so, we need to install the following loaders: 
 
 ~~~
-npm install less-loader less style-loader css-loader url-loader file-loader extract-text-webpack-plugin --save-dev
+npm install less-loader less style-loader css-loader url-loader file-loader image-webpack-loader extract-text-webpack-plugin --save-dev
 ~~~
 
 We also need to install [bootstrap](http://getbootstrap.com/) and [react-bootstrap](http://react-bootstrap.github.io/getting-started.html):
@@ -348,6 +348,20 @@ var config = {
         loader: 'url?limit=100000&name=fonts/[name].[ext]',
         include: [
           APP_DIR,
+          path.resolve(__dirname, 'node_modules/bootstrap/fonts'),
+        ],
+        exclude: [
+          IMAGE_DIR
+        ]
+      },
+      {
+        test: /.*\.(gif|png|jpe?g|svg)$/i,
+        loaders: [
+          'file?hash=sha512&digest=hex&name=/images/[name].[ext]',
+          'image-webpack?{progressive:true, optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}}'
+        ],
+        include: IMAGE_DIR,
+        exclude: [
           path.resolve(__dirname, 'node_modules/bootstrap/fonts')
         ]
       }
@@ -366,8 +380,10 @@ module.exports = config;
 There are many things going on in our config, but I'll highlight the essentials:
 
 - We added the `main.less` file as an entry point
-- We added the **LESS & CSS loaders**, and we've set them to watch .less files in our styles folder
+- We added the **LESS & CSS loaders**, and we've set them to watch .less files in our styles folder;
 - We added the **url-loader** to watch for font files in our app folder and the bootstrap fonts folder (as we need to load the glyphicon fonts)
+- We added the **image-webpack-loader** to watch image files; the cool thing about it is it also handles image optimization
+- As you might have noticed, we're watching `.svg` files in both the URL & image loader; to prevent conflicts (images copied to the fonts folder or vice versa), we're excluding the complementary folders of both
 - We've set up the **ExtractTextPlugin** for styles in order to bundle them in a `style.css` file. If we didn't, the styles would have been inlined in the HTML file's header.
 - We've enabled source-maps for our files to make things easier to debug
 
@@ -418,6 +434,8 @@ or try changing some bootstrap variables like:
 
 Looking sharp, doesn't it? 
 
+
+
 **Note: While there are a few other ways of styling React Components (CSS Modules seems to be popular nowadays), there are quite some drawbacks to them, [as presented here](http://jamesknelson.com/why-you-shouldnt-style-with-javascript/) and most of all, they're not as simple to grasp. If you can style a HTML with CSS, you can style JSX.**
 
 ## What about production builds?
@@ -449,7 +467,7 @@ devConfig.devtool = 'cheap-module-source-map';
 devConfig.entry.splice(0,2);
 
 // Remove the HMR plugin
-devConfig.plugins.splice(1, 1);
+devConfig.plugins.splice(0, 1);
 
 // Add code optimisations
 devConfig.plugins = devConfig.plugins.concat([
@@ -535,14 +553,14 @@ and create a `.eslintrc` file with the following contents:
     "react/display-name": 1,
     "react/forbid-prop-types": 1,
     "react/jsx-boolean-value": 1,
-    "react/jsx-closing-bracket-location": 1,
+    "react/jsx-closing-bracket-location": 0,
     "react/jsx-curly-spacing": 1,
     "react/jsx-indent-props": [2, 2],
     "react/jsx-max-props-per-line": 1,
     "react/jsx-no-duplicate-props": 1,
     "react/jsx-no-literals": 0,
     "react/jsx-no-undef": 1,
-    "react/jsx-sort-props": 1,
+    "react/jsx-sort-props": 0,
     "react/jsx-uses-react": 1,
     "react/jsx-uses-vars": 1,
     "react/no-danger": 1,
