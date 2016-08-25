@@ -34,3 +34,4 @@ node_modules
 .idea/
 _site/
 dist/
+.jekyll-metadata

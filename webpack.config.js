@@ -12,12 +12,12 @@ var config = {
   entry: [
     'webpack-dev-server/client?http://localhost:8080', // WebpackDevServer host and port
     'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors
-    APP_DIR + '/index.jsx', // Your appʼs entry point,
+    APP_DIR + '/index.js', // Your appʼs entry point,
     STYLE_DIR + '/main.less'
   ],
   output: {
     path: BUILD_DIR,
-    filename: 'scripts/bundle.js',
+    filename: '/scripts/bundle.js',
     sourceMapFilename: '[file].map'
   },
   devtool: 'eval',
@@ -38,7 +38,7 @@ var config = {
       {
         test: /\.jsx?/,
         loader: "eslint",
-        exclude: /node_modules/
+        exclude: [/node_modules/, /\.json/]
       },
       {
         test: /\.less$/,
@@ -52,6 +52,11 @@ var config = {
           APP_DIR,
           path.resolve(__dirname, 'node_modules/bootstrap/fonts')
         ]
+      },
+      {
+        test: /\.json/,
+        loader: 'json',
+        include: APP_DIR
       }
     ]
   },
@@ -65,8 +70,11 @@ var config = {
       filename: 'index.html',
       template: __dirname + '/index.html'
     }),
-    new ExtractTextPlugin("styles/style.css", {allChunks: false})
-  ]
+    new ExtractTextPlugin("/styles/style.css", {allChunks: false})
+  ],
+  devServer: {
+    historyApiFallback: true
+  }
 };
 
 module.exports = config;
