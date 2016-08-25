@@ -141,7 +141,7 @@ The next step for us is to define our **Action Creators**. **Action creators** a
 
 Let's define the Product view action creators:
 
-`src/client/actions/view/ProductActions.js`:
+`src/client/app/actions/view/ProductActions.js`:
 
 ~~~javascript
 import APP_CONSTANTS from '../../constants/AppConstants';
