@@ -1,15 +1,14 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Glyphicon } from 'react-bootstrap';
+
+import NotFound from './components/NotFound.jsx';
 
 class App extends React.Component {
   render() {
     return (
-      <p>
-        <Glyphicon glyph="star" />
-
-        Hello React!
-      </p>
+      <div>
+        <NotFound />
+      </div>
     );
   }
 }

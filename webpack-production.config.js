@@ -12,7 +12,7 @@ devConfig.devtool = 'cheap-module-source-map';
 devConfig.entry.splice(0,2);
 
 // Remove the HMR plugin
-devConfig.plugins.splice(1, 1);
+devConfig.plugins.splice(0, 1);
 
 // Add code optimisations
 devConfig.plugins = devConfig.plugins.concat([
