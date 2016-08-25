@@ -389,21 +389,48 @@ There are many things going on in our config, but I'll highlight the essentials:
 
 Now running `npm start` should serve us the project with the JS and CSS bundles included.
 
-To test that everything works properly, change the `index.jsx` contents to:
+To test that everything works properly, create a new component (we'll use it as a 404 page later):
+
+(`src/client/app/components/NotFound.jsx`):
+
+~~~
+import React from 'react';
+
+import { Image } from 'react-bootstrap';
+
+import img404 from '../../images/404-page2.png';
+
+function NotFound() {
+  return (
+    <div>
+      <Image
+        src={img404}
+        alt="Page not found"
+        className="img-responsive center-block" />
+    </div>
+  );
+}
+
+export default NotFound;
+~~~
+{: .language-jsx}
+
+As you can see, we're not using URL paths like in regular HTML, but we rather import the image file as a module and webpack takes care (with the great image-webpack-loader and the powerful file-loader) of building the URLs for us.
+
+Now let's change the `index.jsx` contents to:
 
 ~~~
 import React from 'react';
 import { render } from 'react-dom';
-import { Glyphicon } from 'react-bootstrap';
+
+import NotFound from './components/NotFound.jsx';
 
 class App extends React.Component {
-  render () {
+  render() {
     return (
-      <p>
-        <Glyphicon glyph="star" />
-
-        Hello React!
-      </p>
+      <div>
+        <NotFound />
+      </div>
     );
   }
 }
