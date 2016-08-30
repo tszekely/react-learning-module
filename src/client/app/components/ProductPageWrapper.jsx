@@ -94,7 +94,6 @@ class ProductPageWrapper extends React.Component {
 
 ProductPageWrapper.propTypes = {
   cart: IPropTypes.Map,
-  products: React.PropTypes.arrayOf(React.PropTypes.object),
   params: React.PropTypes.object.isRequired,
   handleAddToCart: React.PropTypes.func
 };

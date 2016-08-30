@@ -44,27 +44,55 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <Header
-          cart={this.state.cart} />
-        <Grid id="content">
-          {
-            React.cloneElement(
-              this.props.children,
-              {
-                ...this.state
-              }
-            )
-          }
-        </Grid>
-        <Footer />
-      </div>
+      <html>
+      <head>
+        <meta charSet="utf-8" />
+
+        <title>{this.props.title || 'Our Awesome Store'}</title>
+
+        <link rel="icon"
+          type="image/x-icon"
+          href="/favicon.ico" />
+
+        <link
+          rel="shortcut icon"
+          href="/favicon.ico" />
+
+        <link
+          href="/styles/style.css"
+          rel="stylesheet" />
+      </head>
+      <body>
+        <div id="app">
+          <Header
+            cart={this.state.cart} />
+          <Grid id="content">
+            {
+              React.cloneElement(
+                this.props.children,
+                {
+                  ...this.state
+                }
+              )
+            }
+          </Grid>
+          <Footer />
+        </div>
+
+        <script
+          type="text/javascript"
+          src="/scripts/bundle.js">
+        </script>
+      </body>
+      </html>
     );
   }
 }
 
 App.propTypes = {
-  children: React.PropTypes.element.isRequired
+  children: React.PropTypes.element.isRequired,
+  title: React.PropTypes.string,
+  description: React.PropTypes.string
 };
 
 export default App;

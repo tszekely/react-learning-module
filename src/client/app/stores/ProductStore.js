@@ -1,14 +1,16 @@
-let _products = [],
-  _currentPage = 1,
-  _totalPages = 1,
-  _isLoading = true;
-
 import EventEmitter from 'events';
 
 import AppDispatcher from '../dispatcher/AppDispatcher';
 
 import APP_CONSTANTS from '../constants/AppConstants';
 const { ACTION_TYPES, PAGE_SIZE } = APP_CONSTANTS;
+
+import { canUseDOM } from 'fbjs/lib/ExecutionEnvironment';
+
+let _products = [],
+  _currentPage = 1,
+  _totalPages = 1,
+  _isLoading = true;
 
 const CHANGE_EVENT = 'CHANGE';
 
@@ -18,6 +20,20 @@ function _loadProductData(data) {
   _totalPages = Math.ceil(data.totalObjects / PAGE_SIZE);
   _isLoading = false;
 }
+
+/*eslint-disable */
+if (canUseDOM && window["__REACT_ENGINE__"]) {
+  // console.log(window);
+  if (window["__REACT_ENGINE__"].products) {
+    _loadProductData(window["__REACT_ENGINE__"].products)
+  }
+
+  if (window["__REACT_ENGINE__"].productById) {
+    _products.push(window["__REACT_ENGINE__"].productById);
+    _isLoading = false;
+  }
+}
+/*eslint-enable */
 
 const ProductStore = Object.assign({}, EventEmitter.prototype, {
   getAll() {

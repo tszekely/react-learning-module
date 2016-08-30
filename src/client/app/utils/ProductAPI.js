@@ -14,6 +14,8 @@ const ProductAPI = {
       }
     }).then((response) => {
       ProductActions.productsLoaded(response);
+
+      return response;
     });
   },
 
@@ -21,6 +23,8 @@ const ProductAPI = {
     return ProductStorage.findById(productId).then((response) => {
       response.id = productId;
       ProductActions.productLoaded(response);
+
+      return response;
     }).catch((/*error*/) => {
       ProductActions.productLoadFailed();
     });

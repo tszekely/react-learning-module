@@ -3,7 +3,7 @@ var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
-var BUILD_DIR = path.resolve(__dirname, 'dist');
+var BUILD_DIR = path.resolve(__dirname, 'src/server/public');
 var APP_DIR = path.resolve(__dirname, 'src/client/app');
 var STYLE_DIR = path.resolve(__dirname, 'src/client/styles');
 var IMAGE_DIR = path.resolve(__dirname, 'src/client/images');
@@ -11,12 +11,13 @@ var IMAGE_DIR = path.resolve(__dirname, 'src/client/images');
 var config = {
   cache:true,
   entry: [
-    'webpack-dev-server/client?http://localhost:8080', // WebpackDevServer host and port
-    'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors
+    // 'webpack-dev-server/client?http://localhost:8080', // WebpackDevServer host and port
+    // 'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors
     APP_DIR + '/index.js', // Your appʼs entry point,
     STYLE_DIR + '/main.less'
   ],
   output: {
+    // publicPath: '/',
     path: BUILD_DIR,
     filename: '/scripts/bundle.js',
     sourceMapFilename: '[file].map'
@@ -68,7 +69,16 @@ var config = {
       {
         test: /\.json/,
         loader: 'json',
-        include: APP_DIR
+        include: [
+          APP_DIR,
+          path.resolve(__dirname, 'node_modules/react-engine'),
+        ]
+      },
+      {
+        test: /.ico$/i,
+        loaders: [
+          'file?hash=sha512&digest=hex&name=[name].[ext]',
+        ]
       }
     ]
   },
@@ -76,11 +86,12 @@ var config = {
     configFile: '.eslintrc'
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
+    // new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       hash: true,
       filename: 'index.html',
-      template: path.resolve(__dirname, 'index.html')
+      template: './index.html',
+      favicon: './favicon.ico'
     }),
     new ExtractTextPlugin("/styles/style.css", {allChunks: false})
   ],

@@ -11,6 +11,8 @@ import ProductStore from '../stores/ProductStore';
 import APP_CONSTANTS from '../constants/AppConstants';
 const { PAGE_SIZE } = APP_CONSTANTS;
 
+import { browserHistory } from 'react-router';
+
 function getStateFromStores() {
   return {
     products: ProductStore.getAll(),
@@ -31,7 +33,15 @@ class ProductList extends React.Component {
   }
 
   componentDidMount() {
-    ProductActions.getProducts(this.state.activePage, PAGE_SIZE);
+    const qPage = parseInt(this.props.location.query.page) || 1;
+
+    if (
+      this.state.activePage !== qPage ||
+      (this.state.products.length < PAGE_SIZE && (this.state.activePage !== this.state.totalPages || this.state.totalPages === 1))
+    ) {
+      ProductActions.getProducts(qPage, PAGE_SIZE);
+    }
+
     ProductStore.addChangeListener(this._onChange);
   }
 
@@ -40,6 +50,8 @@ class ProductList extends React.Component {
   }
 
   handleSelectPage(newPage) {
+    browserHistory.push(`${this.props.location.pathname}?page=${newPage}`);
+
     ProductActions.getProducts(newPage, PAGE_SIZE);
   }
 
@@ -86,5 +98,9 @@ class ProductList extends React.Component {
     }
   }
 }
+
+ProductList.propTypes = {
+  location: React.PropTypes.object
+};
 
 export default ProductList;

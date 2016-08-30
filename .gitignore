@@ -35,3 +35,4 @@ node_modules
 _site/
 dist/
 .jekyll-metadata
+src/server/public

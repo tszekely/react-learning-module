@@ -29,4 +29,8 @@ const ProductActions = {
   }
 };
 
+export const getProducts = ProductActions.getProducts;
+
+export const getProductById = ProductActions.getProductById;
+
 export default ProductActions;

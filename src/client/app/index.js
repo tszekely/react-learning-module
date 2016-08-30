@@ -1,50 +1,18 @@
-import React from 'react';
-import { render } from 'react-dom';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import React from 'react'; // eslint-disable-line
+// import { render } from 'react-dom';
+import ReactEngineClient from 'react-engine/lib/client';
 
-import App from './components/App.jsx';
-import Home from './components/Home.jsx';
-import ProductList from './components/ProductList.jsx';
-import ProductPageWrapper from './components/ProductPageWrapper.jsx';
-import NotFound from './components/NotFound.jsx';
-import Checkout from './components/Checkout.jsx';
-import OrderSent from './components/OrderSent.jsx';
+import Routes from './routes.jsx';
 
-render(
-  (
-    <Router
-      history={browserHistory}>
-      <Route
-        path="/"
-        component={App}>
+const options = {
+  routes: Routes,
 
-        <IndexRoute
-          component={Home} />
+  viewResolver(viewName) {
+    return require('./components/' + viewName);
+  }
+};
 
-        <Route
-          path="shop">
-
-          <IndexRoute
-            component={ProductList} />
-
-          <Route
-            path=":id"
-            component={ProductPageWrapper} />
-
-        </Route>
-
-        <Route
-          path="checkout"
-          component={Checkout} />
-
-        <Route
-          path="order_sent"
-          component={OrderSent} />
-
-        <Route
-          path="*"
-          component={NotFound} />
-
-      </Route>
-    </Router>
-  ), document.getElementById('app'));
+document.addEventListener('DOMContentLoaded', function onLoad() {
+  // boot the app when the DOM is ready
+  ReactEngineClient.boot(options);
+});

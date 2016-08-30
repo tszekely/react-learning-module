@@ -2,7 +2,7 @@ var webpack = require('webpack');
 var path = require('path');
 
 var devConfig = require('./webpack.config.js');
-var BUILD_DIR = path.resolve(__dirname, 'dist');
+var BUILD_DIR = path.resolve(__dirname, 'src/server/public');
 
 var CleanWebpackPlugin = require('clean-webpack-plugin');
 
