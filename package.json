@@ -6,8 +6,8 @@
   "scripts": {
     "watch": "webpack --config webpack.config.js -w",
     "build": "webpack --config webpack-production.config.js -p --progress",
-    "server": "node src/server/app.js",
-    "start": "nodemon src/server/app.js",
+    "start": "node src/server/app.js",
+    "server": "nodemon src/server/app.js",
     "dev": "concurrently  --kill-others \"npm run watch\" \"npm run server\""
   },
   "repository": {
